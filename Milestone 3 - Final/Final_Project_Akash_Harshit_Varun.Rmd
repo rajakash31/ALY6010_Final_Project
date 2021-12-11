@@ -3,7 +3,7 @@ title: "Final Project"
 author:
 - 'Members : Akash Raj, Harshit Gaur, Varun Singh'
 - 'Professor : Dr. Amin Karimpour'
-date: 'Date : 12/10/2021'
+date: 'Date : 12/11/2021'
 output:
   html_document:
     theme: cerulean
@@ -78,10 +78,13 @@ library(RANN)
 library(data.table)
 library(vtable)
 library(scales)
+library(gplots)
+library(MASS)
+library(ggpubr)
 ```
 
 ```{r path, echo=FALSE}
-setwd("/Users/HarshitGaur/Documents/Northeastern University/MPS Analytics/ALY 6010/Final Project/Milestone 3 - Final/")
+setwd("C:/Users/rajak/OneDrive/Desktop/Study/University/ALY6010 - Probablity & Statistics/Final Project/ALY6010_Final_Project/Milestone 3 - Final")
 ```
 
 __Importing the data set for analysis__
@@ -635,7 +638,7 @@ animate(gif1, nframes = 100, fps = 5, end_pause = 20, renderer=gifski_renderer("
 2. After 2005, the demand of automatic cars increased which peaked in 2015 overtaking manual cars.
   
   
-## Relationships between Attributes
+### Relationships between Attributes
   
 __Scatter plot between 'Selling Price' and 'Mileage' distributed by transmission type__
 ```{r rel_1, message=FALSE, warning=FALSE}
@@ -710,7 +713,7 @@ __Scatter plot between 'Kilometers Driven' and 'Selling Price' distributed by tr
 ggplot(data = car_sales, aes(x = km_driven, y = selling_price, color = transmission)) +
   geom_point() +
   geom_jitter() +
-  labs(title = "Scatter Plot of Cars' Kilometers Driven vs Selling Price", x = "Brands", y = 'Selling Price') +
+  labs(title = "Scatter Plot of Cars' Kilometers Driven vs Selling Price", x = "Kilometers Driven", y = 'Selling Price') +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 10)) + 
   geom_smooth(method = "lm")
 
@@ -880,6 +883,205 @@ format(ttest$p.value, scientific = FALSE)
 Since, the p-value of our Two-Sample t-Test is `r ttest$p.value`, which is not less than our alpha = 0.05, we cannot reject the Null Hypothesis of the test. 
 This means that we do not have sufficient evidence to say that Mean kilometers driven for dealers (seller_type = dealer) is not equal to the kilometers driven for trustmark dealer in the data set.
   
+  
+### Chi Square Test
+__Chi Square test to identify association between variables 'Owner Type & Fuel'__
+
+
+```{r chisqtest1, message=FALSE, warning=FALSE}
+# Chi Square test to verify the association between the variables Owner Type & Fuel
+#chisq_test <- 
+#format(chisq_test$p.value, scientific = FALSE)
+
+
+# 1. convert the data as a table
+car_sales_tab <- table(car_sales$owner, car_sales$fuel)
+dt <- as.table(as.matrix(car_sales_tab))
+
+# 2. Graph
+balloonplot(t(dt), main ="Balloon Plot of Contigency Table of Owner and Fuel", xlab ="", ylab="",
+            label = FALSE, show.margins = FALSE)
+```
+  
+  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATIVE : </B></FONT>  
+  
+```{r chisqtest2, message=FALSE, warning=FALSE}
+# Chi Square test to verify the association between the variables Owner Type & Fuel
+chisq_test <- chisq.test(car_sales_tab)
+chisq_test
+format(chisq_test$p.value, scientific = FALSE)
+```
+
+<FONT SIZE = 2, COLOR = " #f7b21b"><B>DEGREE OF FREEDOM : </B></FONT>`r chisq_test$parameter`  
+<FONT SIZE = 2, COLOR = " #f7b21b"><B>P-VALUE : </B></FONT>`r chisq_test$p.value`  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+  
+  
+### One Way ANOVA test
+__One Way ANOVA between categorical Owner and Fuel and other continuous variables__
+
+Categorical variables:  
+
+* fuel  
+* owner  
+
+Continuous variables:  
+
+* max_power
+* engine
+* mileage
+* km_driven
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova1, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between fuel and max_power
+one.way1 <- aov(max_power ~ fuel, data = car_sales)
+summary(one.way1)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova2, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between fuel and engine
+one.way2 <- aov(engine ~ fuel, data = car_sales)
+summary(one.way2)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova3, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between fuel and mileage
+one.way3 <- aov(mileage ~ fuel, data = car_sales)
+summary(one.way3)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova4, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between fuel and km_driven
+one.way4 <- aov(km_driven ~ fuel, data = car_sales)
+summary(one.way4)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova5, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between owner and max_power
+one.way5 <- aov(max_power ~ owner, data = car_sales)
+summary(one.way5)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova6, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between owner and engine
+one.way6 <- aov(engine ~ owner, data = car_sales)
+summary(one.way6)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova7, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between owner and mileage
+one.way7 <- aov(mileage ~ owner, data = car_sales)
+summary(one.way7)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+  
+
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+
+```{r anova8, message=FALSE, warning=FALSE}
+# One way ANOVA test to test the association between owner and km_driven
+one.way8 <- aov(km_driven ~ owner, data = car_sales)
+summary(one.way8)
+```
+  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+
+
+# Regression Model
+  
+Write about linear regression  
+
+## Assumptions of Liner Model
+  
+Before applying linear regression model, the normality of the data is checked using a histogram and density plot  
+```{r hist_density, message=FALSE, warning=FALSE}
+p1 <- ggplot(data = car_sales) + 
+  geom_histogram(mapping = aes(selling_price))
+
+p2 <- ggdensity(car_sales$selling_price,  fill = 'lightgray') + 
+  stat_overlay_normal_density(color = 'red', linetype = 'dashed') + 
+  xlab(label = 'Selling Price') +
+  labs(title = 'Density plot of Selling Price')
+
+gridExtra::grid.arrange(p1, p2)
+```
+
+The Selling price variable needs to be log transformed to convert it into normal distribution.  
+
+```{r log_density, message=FALSE, warning=FALSE}
+ggdensity(log(car_sales$selling_price),  fill = 'lightgray') + 
+  stat_overlay_normal_density(color = 'red', linetype = 'dashed') + 
+  xlab(label = 'Log Selling Price') +
+  labs(title = 'Density plot of Log transformed Selling Price')
+```
+  
+  
+Transformed the selling price  
+
+```{r transform, message=FALSE, warning=FALSE}
+car_sales$log_selling_price <- log(car_sales$selling_price)
+
+names_vec <- c('log_selling_price', 'fuel', 'seller_type', 'transmission', 'owner', 'engine', 'max_power', 'torque', 'age', 'brand')
+car_sales_df <- car_sales[, names_vec]
+
+```
+
+
+## Building Linear Regression model  
+
+```{r lm, message=FALSE, warning=FALSE}
+# Fit the full model 
+full.model <- lm(log_selling_price ~., data = car_sales_df)
+# Stepwise regression model
+step.model <- stepAIC(full.model, direction = "both", 
+                      trace = FALSE)
+summary(step.model)
+```
+  
+## Interpreting the Model
+```{r lm_plot, message=FALSE, warning=FALSE}
+plot(step.model)
+```
 
 # Conclusion
 
