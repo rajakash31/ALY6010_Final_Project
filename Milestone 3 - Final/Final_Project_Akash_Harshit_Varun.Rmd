@@ -917,8 +917,7 @@ format(chisq_test$p.value, scientific = FALSE)
 ```
 
 <FONT SIZE = 2, COLOR = " #f7b21b"><B>DEGREE OF FREEDOM : </B></FONT>`r chisq_test$parameter`  
-<FONT SIZE = 2, COLOR = " #f7b21b"><B>P-VALUE : </B></FONT>`r chisq_test$p.value`  
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #f7b21b"><B>P-VALUE : </B></FONT>`r chisq_test$p.value`   
   
   
 ### One Way ANOVA test
@@ -936,8 +935,8 @@ Continuous variables:
 * mileage
 * km_driven
 
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Fuel and Max-Power groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Fuel and Max-Power groups are not same.  
 
 ```{r anova1, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between fuel and max_power
@@ -945,10 +944,12 @@ one.way1 <- aov(max_power ~ fuel, data = car_sales)
 summary(one.way1)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Fuel and Max-Power groups are not same in the data set.  
 
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Fuel and Engine groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Fuel and Engine groups are not same.  
 
 ```{r anova2, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between fuel and engine
@@ -956,10 +957,12 @@ one.way2 <- aov(engine ~ fuel, data = car_sales)
 summary(one.way2)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Fuel and Engine groups are not same in the data set.  
 
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Fuel and Mileage groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Fuel and Mileage groups are not same.  
 
 ```{r anova3, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between fuel and mileage
@@ -967,10 +970,12 @@ one.way3 <- aov(mileage ~ fuel, data = car_sales)
 summary(one.way3)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Fuel and Mileage groups are not same in the data set.  
 
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Fuel and Kilometers-Driven groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Fuel and Kilometers-Driven groups are not same.  
 
 ```{r anova4, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between fuel and km_driven
@@ -978,11 +983,12 @@ one.way4 <- aov(km_driven ~ fuel, data = car_sales)
 summary(one.way4)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
-  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Fuel and Kilometers-Driven groups are not same in the data set.  
 
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Owner and Max-Power groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Owner and Max-Power groups are not same.  
 
 ```{r anova5, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between owner and max_power
@@ -990,11 +996,12 @@ one.way5 <- aov(max_power ~ owner, data = car_sales)
 summary(one.way5)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Owner and Max-Power groups are not same in the data set.  
   
-
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Owner and Engine groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Owner and Engine groups are not same.  
 
 ```{r anova6, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between owner and engine
@@ -1002,10 +1009,12 @@ one.way6 <- aov(engine ~ owner, data = car_sales)
 summary(one.way6)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is not less than our alpha = 0.05, we can not reject the Null Hypothesis of the test. 
+This means that we do not have sufficient evidence to say that True Means of the Owner and Engine groups are not same in the data set.   
   
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Owner and Mileage groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Owner and Mileage groups are not same.  
 
 ```{r anova7, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between owner and mileage
@@ -1013,11 +1022,12 @@ one.way7 <- aov(mileage ~ owner, data = car_sales)
 summary(one.way7)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Owner and Mileage groups are not same in the data set.  
   
-
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>True Means of the Owner and Kilometers-Driven groups are same.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>True Means of the Owner and Kilometers-Driven groups are not same.  
 
 ```{r anova8, message=FALSE, warning=FALSE}
 # One way ANOVA test to test the association between owner and km_driven
@@ -1025,16 +1035,25 @@ one.way8 <- aov(km_driven ~ owner, data = car_sales)
 summary(one.way8)
 ```
   
-<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>  
+<FONT SIZE = 2, COLOR = " #A11515"><B>Observation - </B></FONT>
+Since, the p-value of our ANOVA test is less than our alpha = 0.05, we can reject the Null Hypothesis of the test. 
+This means that we have sufficient evidence to say that True Means of the Owner and Kilometers-Driven groups are not same in the data set.  
 
 
 # Regression Model
   
-Write about linear regression  
-
-## Assumptions of Liner Model
+Linear regression models the relationship between two variables by fitting a linear equation to observed data. One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable. Linear regression uses the equation y = B0 + B1*x to model the data. We are going to model the price of the homes/apartments listed on Airbnb with the other variables. 
   
-Before applying linear regression model, the normality of the data is checked using a histogram and density plot  
+## Assumptions of Linear Model
+  
+Before building a linear regression model, these assumptions need to be verified:
+1. Linear relationship: There exists a linear relationship between the independent variable, x, and the dependent variable, y.
+2. Independence: The residuals are independent. In particular, there is no correlation between consecutive residuals in time series data.
+3. Homoscedasticity: The residuals have constant variance at every level of x.
+4. Normality: The residuals of the model are normally distributed.
+
+We have already tested the linearity and dependence of the variables. We are going to test the normality of the data now, before building the linear regression model.  
+   
 ```{r hist_density, message=FALSE, warning=FALSE}
 p1 <- ggplot(data = car_sales) + 
   geom_histogram(mapping = aes(selling_price))
@@ -1069,7 +1088,9 @@ car_sales_df <- car_sales[, names_vec]
 
 
 ## Building Linear Regression model  
-
+  
+The lm() function is used to build the linear regression model. However, to obtain the best model, we have used an approach called stepwise linear regression. Stepwise linear regression is a method of regressing multiple variables while simultaneously removing those that aren't important. Stepwise regression essentially does multiple regression a number of times, each time removing the weakest correlated variable. At the end we are left with the variables that explain the distribution best.
+  
 ```{r lm, message=FALSE, warning=FALSE}
 # Fit the full model 
 full.model <- lm(log_selling_price ~., data = car_sales_df)
@@ -1077,11 +1098,6 @@ full.model <- lm(log_selling_price ~., data = car_sales_df)
 step.model <- stepAIC(full.model, direction = "both", 
                       trace = FALSE)
 summary(step.model)
-```
-  
-## Interpreting the Model
-```{r lm_plot, message=FALSE, warning=FALSE}
-plot(step.model)
 ```
   
   
