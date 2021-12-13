@@ -640,6 +640,8 @@ animate(gif1, nframes = 100, fps = 5, end_pause = 20, renderer=gifski_renderer("
   
 ### Relationships between Attributes
   
+Relationships between the attributes in our data set can be studied using scatterplots amongst them. The pattern of distribution of data set and the correlation between the variables can also be decoded from regression lines in the plot using GEOM_SMOOTH() function.
+  
 __Scatter plot between 'Selling Price' and 'Mileage' distributed by transmission type__
 ```{r rel_1, message=FALSE, warning=FALSE}
 # Make a ggplot (Scatter plot) of variables 'Mileage' and 'Selling Price'.
@@ -904,9 +906,8 @@ balloonplot(t(dt), main ="Balloon Plot of Contigency Table of Owner and Fuel", x
 ```
   
   
-<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT  
-<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATIVE : </B></FONT>  
+<FONT SIZE = 2, COLOR = " #668203"><B>NULL HYPOTHESIS, H0 : </B></FONT>There is no relationship between Owner-Type and Fuel-Type of cars. The variables are independent.  
+<FONT SIZE = 2, COLOR = " #668203"><B>ALTERNATE HYPOTHESIS, H1 : </B></FONT>There exists some relationship between Owner-Type and Fuel-Type of cars. The variables are dependent.  
   
 ```{r chisqtest2, message=FALSE, warning=FALSE}
 # Chi Square test to verify the association between the variables Owner Type & Fuel
