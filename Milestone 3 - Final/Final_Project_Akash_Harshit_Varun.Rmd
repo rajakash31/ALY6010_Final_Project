@@ -1042,7 +1042,7 @@ This means that we have sufficient evidence to say that True Means of the Owner 
 
 # Regression Model
   
-Linear regression models the relationship between two variables by fitting a linear equation to observed data. One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable. Linear regression uses the equation y = B0 + B1*x to model the data. We are going to model the price of the homes/apartments listed on Airbnb with the other variables. 
+Linear regression models the relationship between two variables by fitting a linear equation to observed data. One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable. Linear regression uses the equation y = B0 + B1*x to model the data. We are going to model the price of the cars listed on CarDekho.com with the other variables. 
   
 ## Assumptions of Linear Model
   
@@ -1115,7 +1115,7 @@ The data set of car sales by <a href = "https://www.cardekho.com/">CarDekho.com<
 <li>Once the data cleaning and exploratory analysis is performed, hypothesis testing is performed to validate certain assumptions on the sample data.
 </ol>
 
-In this assignment, we used one sample t-test and two sample t-test to compare the variables 'km_driven' and 'selling_price' with the overall sample average and compare across two groups respectively. Based on the exploratory analysis performed earlier, we wanted to validate the following hypotheis using t-test:  
+We used one sample t-Test and two sample t-Test to compare the variables 'km_driven' and 'selling_price' with the overall sample average and compare across two groups respectively. Based on the exploratory analysis performed earlier, we wanted to validate the following hypotheis using t-test:  
 
 1. True Mean of kilometers driven by ‘Individual’ seller-type is greater than the overall average
 2. True Mean of selling price of cars sold by ‘Dealer’ seller-type is greater than the overall average
@@ -1124,7 +1124,11 @@ In this assignment, we used one sample t-test and two sample t-test to compare t
 5. Mean kilometers driven for small cars is not equal to the kilometers driven for medium cars
 6. Mean kilometers driven for dealers is not equal to the kilometers driven for trustmark dealer  
 
-In the first five test, based on the t-statistic and p-value we obtained a enough evidence to reject the NULL hypothesis, however in the last test, we did not obtain enough evidence to reject the NULL hypothesis.
+In the first five test, based on the t-statistic and p-value we obtained sufficient evidences to reject the NULL hypothesis, however in the last test, we did not obtain enough evidence to reject the NULL hypothesis.
+
+We also performed Chi-Square Test and One-wav ANOVA test on categorical and continuous variables in our data set. The p-value of all the tests except the one where groups of Owner and Engine were taken came out to be very less than our assumed alpha = 0.05. Therefore, we were able to reject the Null Hypotheses in all but one tests successfully.
+
+Lastly, we performed Regression Analysis on our data set to model the prices of cars listed on CarDekho.com. We log transformed the Selling price variable to convert it into normal distribution and used lm() function to build the linear regression model. 
 
 # Bibliography
 
