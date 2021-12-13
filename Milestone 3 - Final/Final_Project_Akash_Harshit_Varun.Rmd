@@ -1082,7 +1082,8 @@ summary(step.model)
 ```{r lm_plot, message=FALSE, warning=FALSE}
 plot(step.model)
 ```
-
+  
+  
 # Conclusion
 
 The data set of car sales by <a href = "https://www.cardekho.com/">CarDekho.com</a> has provided various insights about the types of cars sold in the car industry and the patterns between them. The data set contains 8128 data points along with 13 features related to car details, engine details, and sale details.
